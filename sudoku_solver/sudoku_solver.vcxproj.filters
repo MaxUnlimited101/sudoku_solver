@@ -2,10 +2,9 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <CudaCompile Include="kernel.cu" />
-    <CudaCompile Include="sequential_solver.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="sequential_solver.h" />
     <ClInclude Include="helpers.h" />
+    <ClInclude Include="cuda_solver.cuh" />
   </ItemGroup>
 </Project>

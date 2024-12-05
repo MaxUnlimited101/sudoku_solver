@@ -3,17 +3,16 @@
 #include "device_launch_parameters.h"
 
 #include <stdio.h>
-#include "sequential_solver.h"
+#include <chrono>
+#include <thrust/device_vector.h>
+#include <string>
+#include "helpers.h"
+
 
 int main()
 {
-    // 100 random sudokus solved sequentially
-    for (int i = 0; i < 100; i++)
-    {
-        
-        sequential_solver seq_solv(sudoku_board);
-        seq_solv.solve();
-    }
+    //generate_sample(50000);
+    test_sequential("./tests/extreme/10000");
 
 	return EXIT_SUCCESS;
 }
