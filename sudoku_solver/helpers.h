@@ -8,8 +8,28 @@
 #include <fstream>
 #include <sstream>
 #include <algorithm>
+#include <chrono>
+
+//https://stackoverflow.com/questions/8622256/in-c11-is-sqrt-defined-as-constexpr
+namespace Detail
+{
+    double constexpr sqrtNewtonRaphson(double x, double curr, double prev)
+    {
+        return curr == prev
+            ? curr
+            : sqrtNewtonRaphson(x, 0.5 * (curr + x / curr), curr);
+    }
+}
+
+double constexpr sqrt_constexpr(double x)
+{
+    return x >= 0 && x < std::numeric_limits<double>::infinity()
+        ? Detail::sqrtNewtonRaphson(x, x, 0)
+        : std::numeric_limits<double>::quiet_NaN();
+}
 
 #define N 9
+constexpr int n = (int)sqrt_constexpr(N);
 
 using board = std::vector<std::vector<char>>;
 
@@ -245,21 +265,4 @@ void test_sequential(const std::string& path)
     auto stop = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
     std::cout << "Time taken to solve " << n << " boards sequentially (microseconds): " << duration.count() << std::endl;
-}
-
-// random sudokus solved on GPU
-// path - Path to file with sudokus
-void test_cuda(const std::string& path)
-{
-    std::vector<board> rng_boards = load_sudokus(path);
-    int n = rng_boards.size();
-
-    std::cout << "Loaded " << n << " boards, solving them on GPU... NOW" << std::endl;
-    auto start = std::chrono::high_resolution_clock::now();
-
-    // cuda kernel here...
-
-    auto stop = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
-    std::cout << "Time taken to solve " << n << " boards on GPU (microseconds): " << duration.count() << std::endl;
 }

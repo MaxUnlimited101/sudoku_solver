@@ -1,12 +1,7 @@
-﻿
-#include "cuda_runtime.h"
+﻿#include "cuda_runtime.h"
 #include "device_launch_parameters.h"
-
-#include <stdio.h>
-#include <chrono>
-#include <thrust/device_vector.h>
-#include <string>
 #include "helpers.h"
+#include "cuda_solver.cuh"
 
 
 int main()
