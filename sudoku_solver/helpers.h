@@ -169,7 +169,7 @@ void print_sudoku(const board& board)
     {
         for (column = 0; column < board[0].size(); column++)
         {
-            std::cout << (board[row][column] + '0') + " ";
+            std::cout << (char)((int)board[row][column] + '0') << " ";
             if ((column - 2) % 3 == 0 && column != board.size() - 1)
                 std::cout << "| ";
         }
@@ -188,7 +188,7 @@ void save_sudokus_to_file(const std::string& path, const std::vector<board>& boa
         {
             for (int j = 0; j < N; j++)
             {
-                out << (b[i][j] + '0');
+                out << (int)(b[i][j]);
             }
         }
         out << std::endl;

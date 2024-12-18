@@ -6,8 +6,9 @@
 
 int main()
 {
-    //generate_sample(50000);
-    test_sequential("./tests/extreme/10000");
+    //generate_sample(10000);
+    //test_sequential("./tests/extreme/10000");
+    test_cuda("./tests/extreme/10000");
 
 	return EXIT_SUCCESS;
 }

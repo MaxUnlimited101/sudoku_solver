@@ -78,6 +78,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <CudaCompile Include="kernel.cu" />
+    <CudaCompile Include="temp.cu" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cuda_solver.cuh" />
